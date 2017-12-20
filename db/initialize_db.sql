@@ -1,9 +1,4 @@
-CREATE DATABASE helo;
-
--- Run this terminal command to connect to the database:
--- \c helo;
-
-CREATE TABLE users (
+CREATE TABLE if not exists users (
   id TEXT not null UNIQUE,
   picture TEXT NOT NULL DEFAULT '',
   birthday DATE,
@@ -15,7 +10,7 @@ CREATE TABLE users (
   last TEXT NOT NULL DEFAULT ''
 );
 
-CREATE TABLE friends (
+CREATE TABLE if not exists friends (
   user_id TEXT NOT NULL,
   friend_id TEXT NOT NULL,
   FOREIGN KEY ( user_id ) REFERENCES users( id ),

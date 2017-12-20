@@ -8,11 +8,15 @@ const path = require('path');
 const app = express();
 require('dotenv').config();
 
-app.use( express.static( `${__dirname}/../public/build` ) );
+app.use( express.static( `${__dirname}/../build` ) );
 
 massive( process.env.CONNECTIONSTRING ).then( dbInstance => {
   app.set('db', dbInstance);
-}).catch( err => console.log('Error on connecting to database:', err) );
+
+  app.get('db').initialize_db().then(response => {
+      console.log(response)
+  })
+})
 
 app.use(session({
   secret: '@f8!l m 0 Rtz',
@@ -48,10 +52,10 @@ app.use(`/api/user`, require(`./routes/user_router.js`));
 app.use(`/api/friend`, require(`./routes/friend_router.js`));
 app.use(`/api/recommended`, require(`./routes/recommended_router.js`));
 
-// Re-send front-end
-app.get('*', ( req, res, next ) => {
-  res.sendFile( path.resolve( `${__dirname}/../public/build/index.html` ) );
-});
+// // Re-send front-end
+// app.get('*', ( req, res, next ) => {
+//   res.sendFile( path.resolve( `${__dirname}/../public/build/index.html` ) );
+// });
 
 app.listen( process.env.PORT, () => { console.log(`Server listening on port ${ process.env.PORT }`)} );
 

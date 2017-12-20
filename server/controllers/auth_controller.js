@@ -6,17 +6,7 @@ module.exports = {
       req.session.user = req.user;
     }
 
-    
-    let url;
-
-    if ( process.env.ENV === "development" ) {
-      url = `${ req.protocol }://${ req.hostname }:3000`;
-    } else {
-      url = `${ req.protocol }://${ req.hostname }`;
-    }
-
-    console.log('Auth redirect url is set to:', url);
-    res.redirect( url );
+    res.redirect('/');
   },
 
   sendUserToClient: ( req, res, next ) => {
