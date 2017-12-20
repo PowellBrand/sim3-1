@@ -1,31 +1,31 @@
-const express = require('express');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const massive = require('massive');
-const passport = require('passport');
-const strategy = require(`./strategy.js`);
-const path = require('path');
-const app = express();
+const express = require('express')
+  , session = require('express-session')
+  , bodyParser = require('body-parser')
+  , massive = require('massive')
+  , passport = require('passport')
+  , strategy = require(`./strategy.js`)
+  , path = require('path')
+  , app = express();
+  require('dotenv').config();
+
 
 const authController = require('./controllers/auth_controller.js');
 const friend_controller = require('./controllers/friend_controller.js');
 const recommended_controller = require('./controllers/recommended_controller.js');
 const user_controller = require('./controllers/user_controller.js');
 
-require('dotenv').config();
 
 app.use( express.static( `${__dirname}/../build` ) );
 
 massive( process.env.CONNECTIONSTRING ).then( dbInstance => {
   app.set('db', dbInstance);
-
   app.get('db').initialize_db().then(response => {
       console.log(response)
   })
 })
 
 app.use(session({
-  secret: '@f8!l m 0 Rtz',
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false
 }));
