@@ -1,0 +1,39 @@
+.Pagination__container {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 500ms;
+}
+
+.Pagination__container_current {
+  width: 75px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 500ms;
+  background-color: black !important;
+  transition: background-color 500ms;
+}
+
+.Pagination__link_current {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.Pagination__link {
+  text-decoration: none;
+  color: black;
+  margin-right: 10px;
+}
+
+.Pagination__link:hover {
+  color: #FFF;
+}
+
+.Pagination__container:hover {
+  background-color: black;
+}

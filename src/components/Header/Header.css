@@ -1,0 +1,67 @@
+.Header__parent_container {
+  height: 60px;
+  min-width: 1200px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Header__child_container {
+  height: 100%;
+  width: 80%;
+  min-width: 1000px;
+  box-sizing: border-box;
+  padding: 0px 20px;
+  display: flex;
+}
+
+.Header__child_left {
+  width: 20%;
+  display: flex;
+  align-items: center;
+}
+
+.Header__title {
+  color: #FFF;
+  font-size: 30px;
+  margin-right: 20px;
+}
+
+.Header__home_img {
+  height: 27px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.Header__search_img {
+  height: 27px;
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+}
+
+.Header__child_mid {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Header__page {
+  color: #FFF;
+  font-size: 20px;
+}
+
+.Header__child_right {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Header__logout {
+  color: #FFF;
+  font-size: 17px;
+  cursor: pointer;
+}

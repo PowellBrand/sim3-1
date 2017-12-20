@@ -1,0 +1,48 @@
+.User__container {
+  width: 321px;
+  height: 150px;
+  background-color: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
+  display: flex;
+}
+
+.User__left {
+  width: 150px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.User__image {
+  border: 3px solid #FF9770;
+  width: 123px;
+}
+
+.User__right {
+  width: calc( 100% - 150px );
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.User__first_name {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 24px;
+}
+
+.User__last_name {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 24px;
+}
+
+.User__btn_edit {
+  width: 150px;
+  font-size: 16px;
+  cursor: pointer;
+}

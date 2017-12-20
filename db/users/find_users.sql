@@ -1,0 +1,4 @@
+SELECT * FROM users
+WHERE id != $1
+OFFSET $2
+LIMIT 24;
