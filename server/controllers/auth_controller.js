@@ -5,7 +5,6 @@ module.exports = {
     if ( req.user && !req.session.user ) {
       req.session.user = req.user;
     }
-
     res.redirect('/');
   },
 

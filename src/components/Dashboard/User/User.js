@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import './User.css';
 
 export default function User( { logout, history, user } ) {
-  console.log( user );
   return (
     <div className="User__container">
       <div className="User__left">

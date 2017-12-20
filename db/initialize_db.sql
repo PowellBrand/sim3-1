@@ -17,3 +17,4 @@ CREATE TABLE if not exists friends (
   FOREIGN KEY ( friend_id ) REFERENCES users( id )
 );
 
+

@@ -21,7 +21,6 @@ class Dashboard extends Component {
     if ( nextProps.user === null && this.props.user !== null ) {
       history.push('/auth');
     }
-
     if ( nextProps.user !== null && this.props.user === null ) {
       getRecommended( nextProps.user, this.state.filter );
     }

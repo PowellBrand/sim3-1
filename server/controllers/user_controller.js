@@ -46,7 +46,8 @@ module.exports = {
       const count = result[0].count;
       let availablePages = calcAvailablePages( count );
 
-      db.users.find_users([ id, offset ]).then( users => res.status(200).send({ users, count, availablePages }) )
+      db.users.find_users([ id, offset ]).then( users => {
+        res.status(200).send({ users, count, availablePages }) })
         .catch( err => console.log(err) );
     }).catch( err => console.log(err) );
   },
