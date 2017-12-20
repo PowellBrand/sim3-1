@@ -1,5 +1,4 @@
 const passport = require('passport');
-const config = require('../config');
 
 module.exports = {
   setUser: ( req, res, next ) => {

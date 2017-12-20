@@ -1,5 +1,5 @@
 const Auth0Strategy = require('passport-auth0');
-
+require('dotenv').config();
 module.exports = new Auth0Strategy({
   domain:       process.env.AUTH_DOMAIN,
   clientID:     process.env.AUTH_ID,
