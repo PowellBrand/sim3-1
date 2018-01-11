@@ -2,9 +2,8 @@ const express = require('express')
   , session = require('express-session')
   , bodyParser = require('body-parser')
   , massive = require('massive')
-  , passport = require('passport')
-  , strategy = require(`./strategy.js`)
-  , path = require('path')
+  , passport = require('passport') 
+  , Auth0Strategy = require('passport-auth0') 
   , app = express();
   require('dotenv').config();
 
@@ -24,6 +23,7 @@ massive( process.env.CONNECTIONSTRING ).then( dbInstance => {
   })
 })
 
+
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
@@ -33,31 +33,43 @@ app.use(session({
 app.use( bodyParser.json() );
 app.use( passport.initialize() );
 app.use( passport.session() );
-passport.use( strategy );
 
-passport.serializeUser( (user, done) => done(null, { id: user.id, picture: 'https://robohash.org/me', firstName: user.name.givenName || '', lastName: user.name.familyName || '' }) );
-passport.deserializeUser( (obj, done) => {
-  const db = app.get('db');
+passport.use(new Auth0Strategy({
+  domain:       process.env.AUTH_DOMAIN,
+  clientID:     process.env.AUTH_ID,
+  clientSecret: process.env.AUTH_SECRET,
+  callbackURL:  process.env.AUTH_CALLBACK_URL,
+  scope: 'openid profile'
+  },
+  function(accessToken, refreshToken, extraParams, profile, done) {
+    const db = app.get('db');
+      db.users.find_user([profile.id]).then( user => {
+          if ( user[0] ) {
+            return done( null, user[0] );
+          } else {
+            var pic = 'https://robohash.org/me';
+            db.users.add_user([profile.id, pic, profile.name.givenName, profile.name.familyName]).then( user => {
+              return done( null, user[0] );
+            })
+          }
+      });
+  }
+));
 
-  db.users.find_user([ obj.id ]).then( response => {
-    if ( response.length === 1 ) {
-      // User is in the database
-      done(null, response[0]);
-    } else if ( response.length === 0 ) {
-      // User is not in the database - Add them in
-      db.users.add_user([ obj.id, obj.picture, obj.firstName, obj.lastName ]).then( response => {
-        done(null, response[0]);
-      }).catch( err => console.log( err ) );
-    }
-  });
+passport.serializeUser( (user, done) => {
+  done(null, user) 
+});
+
+passport.deserializeUser( (user, done) => {
+  done(null, user)
 });
 
 // AUTH ENDPOINTS
-app.get('/api/auth/login', passport.authenticate('auth0', { 
+app.get('/api/auth/login', passport.authenticate('auth0'));
+app.get('/api/auth/callback', passport.authenticate('auth0', {
   successRedirect: '/api/auth/setUser', 
   failureRedirect: '/api/auth/login', 
-  failureFlash: true 
-}));
+}))
 app.get('/api/auth/setUser', authController.setUser);
 app.get('/api/auth/authenticated', authController.sendUserToClient);
 app.post('/api/auth/logout', authController.logout);
