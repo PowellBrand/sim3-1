@@ -25,13 +25,13 @@
 
 * You will need to create a variable call pic that is equal to `https://robohash.org/me` to give the user a random robot picture about the add_user query. 
 
-* Pass in the id from the profile as the first argument to the add_user SQL query. Then the pic variable as the second. profile.name.givenName and profile.name.familyName as the third and fourth arguments. Once it creates the user return done invoked passing in the user. **hint** Be sure to access just the user object if it comes back as an array with an object.
+* Pass in the id from the profile as the first argument to the add_user SQL query. Then the pic variable as the second. profile.name.givenName and profile.name.familyName as the third and fourth arguments. Once it creates the user return done invoked passing in the user. 
 
 * Create your serializeUser. This will just invoke done and pass on the profile.
 
 * Create your deserializeUser. This will just invoke done and pass on the profile.
 
-* Now create your auth endpoints. First we need to kick off the auth process with and endpoint of `/api/auth/login`.
+* Now create two more auth endpoints. First we need to kick off the auth process with and endpoint of `/api/auth/login`.
 
 * Now create your callback endpoint. `/api/auth/callback`. If authentication is successful send them to `/api/auth/setUser` if not send them to `/api/auth/login`.
 
