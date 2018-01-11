@@ -2,7 +2,6 @@ module.exports = {
   find: ( req, res, next ) => {
     const db = req.app.get('db');
     let { user, filter } = req.body;
-
     if ( filter !== 'birthday' ) {
       user[filter] = user[filter].toLowerCase();
     }
