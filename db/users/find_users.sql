@@ -1,4 +1,4 @@
-SELECT * FROM users
+SELECT * FROM users2
 WHERE id != $1
 OFFSET $2
 LIMIT 24;

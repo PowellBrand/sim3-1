@@ -1,1 +1,1 @@
-SELECT COUNT(*) FROM users WHERE id != $1;
+SELECT COUNT(*) FROM users2 WHERE id != $1;

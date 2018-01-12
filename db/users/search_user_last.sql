@@ -1,1 +1,1 @@
-SELECT * FROM users WHERE lower(last) = $1;
+SELECT * FROM users2 WHERE lower(last) = $1;

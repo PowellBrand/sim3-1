@@ -1,4 +1,4 @@
-CREATE TABLE if not exists users (
+CREATE TABLE if not exists users2 (
   id TEXT not null UNIQUE,
   picture TEXT NOT NULL DEFAULT '',
   birthday DATE,
